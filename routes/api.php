@@ -19,4 +19,6 @@ Route::get('/user', function (Request $request) {
 
 Route::post('user/login' ,'Api\UserAuthController@login');
 
+Route::post('user/fblogin' ,'Api\UserAuthController@fblogin');
+
 Route::post('user/create','Api\UserAuthController@create');

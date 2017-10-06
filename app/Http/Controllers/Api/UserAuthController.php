@@ -32,6 +32,18 @@ class UserAuthController extends Controller
 
     }
 
+    public function fblogin(Request $request)
+    {
+    	$email=$request['username'];
+
+    	$attempted_user=User::where('email',$email)->first();
+
+    	if($attempted_user)
+    		return response()->json(['status'=>'success','user' => $attempted_user]);
+
+    	return response()->json(['status'=>'fail','message'=>'unknown user']);
+    }
+
     public function create(Request $request)
     {
 
