@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Hash;
 use App\User;
 
 class UserAuthController extends Controller
@@ -23,8 +24,9 @@ class UserAuthController extends Controller
         }
         
 
-        if( bcrypt($password) == $attempted_user->password)
+        if (Hash::check( $password , $attempted_user->password))
         {
+
             return response()->json([ 'status' => 'success' ,'user' => $attempted_user ]);
         }
 
