@@ -8,7 +8,7 @@ use App\User;
 
 class UserAuthController extends Controller
 {
-    //dfghdfgh
+    //
     public function login(Request $request)
     {
 
@@ -27,6 +27,40 @@ class UserAuthController extends Controller
         {
             return response()->json([ 'status' => 'success' ,'user' => $attempted_user ]);
         }
+
+    }
+
+    public function create()
+    {
+ 
+        $data = request()->all();
+
+        $client = User::where('username' , $data['username'])->first();
+
+        if($client)
+            return response()->json(['status' => 'fail']);
+
+        $array = [
+            'family_name' => $data['family_name'],
+            'last_name' => $data['last_name'],
+            'username' => $data['username'],
+            'mobile' => $data['mobile'],
+            'password' => bcrypt($data['password']),
+        ];
+
+        if(isset($data['email']))
+            $array['email'] = $data['email'];
+        try{
+        $user =  User::create($array);
+        } catch(\Illuminate\Database\QueryException $ex){
+            return response()->json(['status' => 'fail']);
+        }
+
+
+        if($user)
+            return response()->json(['status' => 'success']);
+
+        return response()->json(['status' => 'fail']);
 
     }
 }
