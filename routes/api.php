@@ -21,4 +21,6 @@ Route::post('user/login' ,'Api\UserAuthController@login');
 
 Route::post('user/fblogin' ,'Api\UserAuthController@fblogin');
 
+Route::post('user/fbcreate','Api\UserAuthController@fbcreate');
+
 Route::post('user/create','Api\UserAuthController@create');
