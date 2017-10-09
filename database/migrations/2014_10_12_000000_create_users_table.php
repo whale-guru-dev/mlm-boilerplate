@@ -23,6 +23,9 @@ class CreateUsersTable extends Migration
             $table->string('password', 60);
             $table->integer('mobile');
             $table->integer('status')->default(1);
+            $table->string('qr_pass')->nullable();
+            $table->string('qr_path')->nullable();
+            $table->string('refer_link')->nullable();
             $table->rememberToken();
             $table->timestamps();
              
