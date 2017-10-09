@@ -66,6 +66,7 @@ class UserAuthController extends Controller
 
     			QrCode::format('png')->color(38, 38, 38, 0.85)->backgroundColor(255, 255, 255, 0.82)->size(200)->generate(bcrypt($request['username'].$request['email'].str_random(40)),'qrcode/'.$request['username'].'.'.$request['email'].'.png');
     			$user['qr_path']=url('/').'/qrcode/'.$request['username'].'.'.$request['email'].'.png';
+    			$user['refer_link']=url('/').'/referral/'.$request['username'];
     			$user->save();
     	        return response()->json(['status'=>'success','message'=>'signup success']);
     	    }
