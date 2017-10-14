@@ -71,6 +71,7 @@ class RegisterController extends Controller
             'last_name' =>$data['last_name'],
             'mobile' =>$data['mobile'],
             'email' => $data['email'],
+            'join_date' =>date('Y-m-d'),
             'password' => bcrypt($data['password']),
         ]);
     }
