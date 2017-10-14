@@ -24,9 +24,9 @@ class CreateUsersTable extends Migration
             $table->integer('mobile');
 
             $table->date('join_date');
-            $table->integer('upline_id');
-            $table->integer('level_no');
-            $table->integer('sameline_no');
+            $table->integer('upline_id')->nullabel();
+            $table->integer('level_no')->nullable();
+            $table->integer('sameline_no')->nullable();
             $table->string('path')->nullable();
 
             $table->string('country')->nullable();
