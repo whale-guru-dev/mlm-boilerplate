@@ -22,6 +22,19 @@ class CreateUsersTable extends Migration
             $table->string('profile_photo')->nullable();
             $table->string('password', 60);
             $table->integer('mobile');
+
+            $table->date('join_date');
+            $table->integer('upline_id');
+            $table->integer('level_no');
+            $table->integer('sameline_no');
+            $table->string('path')->nullable();
+
+            $table->string('country')->nullable();
+            $table->string('state')->nullable();
+            $table->text('address')->nullable();
+            $table->integer('zip_code')->nullable();
+            $table->string('city')->nullable();
+
             $table->integer('status')->default(1);
             $table->string('qr_pass')->nullable();
             $table->string('qr_path')->nullable();

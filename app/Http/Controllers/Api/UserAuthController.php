@@ -86,6 +86,11 @@ class UserAuthController extends Controller
     	        $user['last_name']=$request['last_name'];
     	        $user['mobile']=$request['mobile'];
     	        $user['password']=bcrypt($request['password']);
+                $user['qr_pass']=$qrLogin=bcrypt($request['username'].$request['email'].str_random(40));
+
+                QrCode::format('png')->color(38, 38, 38, 0.85)->backgroundColor(255, 255, 255, 0.82)->size(200)->generate(bcrypt($request['username'].$request['email'].str_random(40)),'qrcode/'.$request['username'].'.'.$request['email'].'.png');
+                $user['qr_path']=url('/').'/qrcode/'.$request['username'].'.'.$request['email'].'.png';
+                $user['refer_link']=url('/').'/referral/'.$request['username'];
     	        $user['profile_photo']=$request['profile_photo'];
     	        $user->save();
     	
