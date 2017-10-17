@@ -58,11 +58,11 @@ class UserAuthController extends Controller
     	        $user=new User;
 
     	        
-                if(User::where('email',$request['email']))
+                if(User::where('email',$request['email'])->first())
                      return response()->json(['status'=>'fail','message'=>'existing email']);
                 $user['email']=$request['email'];
     	        
-                if(User::where('username',$request['username']))
+                if(User::where('username',$request['username'])->first())
                      return response()->json(['status'=>'fail','message'=>'existing username']);
                 $user['username']=$request['username'];
     	        $user['family_name']=$request['family_name'];
@@ -90,11 +90,11 @@ class UserAuthController extends Controller
     	        $user=new User;
 
     	        
-                if(User::where('email',$request['email']))
+                if(User::where('email',$request['email'])->first())
                     return response()->json(['status'=>'fail','message'=>'existing email']);
                 $user['email']=$request['email'];
                 
-                if(User::where('username',$request['username']))
+                if(User::where('username',$request['username'])->first())
                      return response()->json(['status'=>'fail','message'=>'existing username']);
                 $user['username']=$request['username'];
     	        $user['family_name']=$request['family_name'];
