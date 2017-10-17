@@ -77,7 +77,13 @@ $route = Route::current();
 					</div>
 					<!-- END SIDEBAR TOGGLER BUTTON -->
 				</li>
-
+				<li class="start {!! $route->getPrefix() == 'admin/dashboard'? 'active': '' !!}">
+					<a href="{{url('admin/dashboard')}}">
+					<i class="fa fa-plus"></i>
+					<span class="title">Dashboard</span>
+					<span class="arrow"></span>
+					</a>
+				</li>
 				<li class="start {!! $route->getPrefix() == 'admin/register'? 'active': '' !!}">
 					<a href="javascript:;">
 					<i class="fa fa-plus"></i>

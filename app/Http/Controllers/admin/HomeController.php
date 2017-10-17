@@ -33,6 +33,11 @@ class HomeController extends Controller
         return view('pages.admin.home');
     }
 
+    public function dashboard()
+    {
+        return view('pages.admin.dashboard.dashboard');
+    }
+
     public function register_new_index()
     {
         return view('pages.admin.registration.register');
@@ -49,10 +54,10 @@ class HomeController extends Controller
         $user =new User;
         $sponsor=User::where('username',$request['sponsor'])->first();
         $user->username=$request['username'];
-        $user->fName=$request['fName'];
-        $user->lName=$request['lName'];
+        $user->family_name=$request['fName'];
+        $user->last_name=$request['lName'];
         $user->gender=$request['gender'];
-        $user->mobile_number=$request['phone'];
+        $user->mobile=$request['phone'];
         $user->join_date=date('Y-m-d');
         if($this->check_under_user($sponsor->id)==false){
             session(['status'=>'fail_admin']);

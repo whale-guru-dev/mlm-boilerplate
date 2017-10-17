@@ -56,14 +56,21 @@ class UserAuthController extends Controller
     	        if($user)
     	        	return response()->json(['status'=>'fail','message'=>'existing user']);
     	        $user=new User;
+
     	        $user['email']=$request['email'];
+                if(User::where('email',$request['email']))
+                    return return response()->json(['status'=>'fail','message'=>'existing email']);
+
     	        $user['username']=$request['username'];
+                if(User::where('username',$request['username']))
+                    return return response()->json(['status'=>'fail','message'=>'existing username']);
+
     	        $user['family_name']=$request['family_name'];
     	        $user['last_name']=$request['last_name'];
     	        $user['mobile']=$request['mobile'];
     	        $user['password']=bcrypt($request['password']);
     	        $user['qr_pass']=$qrLogin=bcrypt($request['username'].$request['email'].str_random(40));
-
+                $user['join_date']=date('y-m-d');
     			QrCode::format('png')->color(38, 38, 38, 0.85)->backgroundColor(255, 255, 255, 0.82)->size(200)->generate(bcrypt($request['username'].$request['email'].str_random(40)),'qrcode/'.$request['username'].'.'.$request['email'].'.png');
     			$user['qr_path']=url('/').'/qrcode/'.$request['username'].'.'.$request['email'].'.png';
     			$user['refer_link']=url('/').'/referral/'.$request['username'];
@@ -79,15 +86,23 @@ class UserAuthController extends Controller
     	
     	        if($user)
     	        	return response()->json(['status'=>'fail','message'=>'existing user']);
+
     	        $user=new User;
+
     	        $user['email']=$request['email'];
-    	        $user['username']=$request['username'];
+                if(User::where('email',$request['email']))
+                    return return response()->json(['status'=>'fail','message'=>'existing email']);
+
+                $user['username']=$request['username'];
+                if(User::where('username',$request['username']))
+                    return return response()->json(['status'=>'fail','message'=>'existing username']);
+                    
     	        $user['family_name']=$request['family_name'];
     	        $user['last_name']=$request['last_name'];
     	        $user['mobile']=$request['mobile'];
     	        $user['password']=bcrypt($request['password']);
                 $user['qr_pass']=$qrLogin=bcrypt($request['username'].$request['email'].str_random(40));
-
+                $user['join_date']=date('y-m-d');
                 QrCode::format('png')->color(38, 38, 38, 0.85)->backgroundColor(255, 255, 255, 0.82)->size(200)->generate(bcrypt($request['username'].$request['email'].str_random(40)),'qrcode/'.$request['username'].'.'.$request['email'].'.png');
                 $user['qr_path']=url('/').'/qrcode/'.$request['username'].'.'.$request['email'].'.png';
                 $user['refer_link']=url('/').'/referral/'.$request['username'];

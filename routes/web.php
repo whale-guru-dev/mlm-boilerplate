@@ -26,6 +26,8 @@ Route::group(['middleware'=>'checkadmin','prefix'=>'admin','namespace'=>'admin']
 
 	Route::get('/','HomeController@index')->name('admin');
 
+	Route::get('dashboard','HomeController@dashboard');
+
 	Route::group(['prefix'=>'configurable'], function(){
 
 		Route::get('/','SettingController@index');

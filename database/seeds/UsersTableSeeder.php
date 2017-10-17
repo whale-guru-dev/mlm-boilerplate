@@ -8,36 +8,19 @@ class UsersTableSeeder extends Seeder {
 	{
 
 		\App\User::create([
-			'name' 	     => 'John',
-			'lastname'   => 'Doe',
+			'family_name' 	     => 'John',
+			'last_name'   => 'Doe',
 			'username'   => 'admin',
 			'email'		 => 'admin@cloudmlmsoftware.com',
-			'binary_qualification' => 'no',
-			'dateofbirth'=> '15/01/1984',
-			'rank_id'=> '1',
-			'password'   => bcrypt('admin123'),
-			'confirmed'  => 1,
-            'admin'      => 1,
-            'about'      => "",
-            'my_package'      => 0,
-			'confirmation_code' => md5(microtime() . env('APP_KEY')),
+			'status' 	 => 0,
+			'mobile'	 => '123456789',
+			'password'	 => bcrypt('admin'),
+			'join_date'  => date('y-m-d'),
+			'upline_id'  => 0,
+			'level_no'	 => 1,	
 		]);	
 
-		\App\User::create([
-			'name' 	     => 'Jessica',
-			'lastname'   => 'Doe',
-			'username'   => 'user',
-			'email'		 => 'user@cloudmlmsoftware.com',
-			'binary_qualification' => 'no',
-			'dateofbirth'=> '15/01/1984',
-			'rank_id'=> '1',
-			'password'   => bcrypt('user123'),
-			'confirmed'  => 1,
-            'admin'      => 0,
-            'about'      => "",
-            'my_package'      => 1,
-			'confirmation_code' => md5(microtime() . env('APP_KEY')),
-		]);	
+
 	
 
 	}
